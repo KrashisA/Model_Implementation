@@ -112,6 +112,7 @@ while (count != 5):
     prediction = model.predict(img2)
 
     Mood = prediction.argmax()
+
     print(prediction.argmax())
 
     df = pd.DataFrame({'Date': [current_date],
@@ -127,11 +128,11 @@ while (count != 5):
     #     resized = resize(sphoto, dim, interpolation=INTER_AREA)
     #     imwrite('./faces/face{}.jpg'.format(count), sphoto)
 
-    # for (x, y, w, h) in faces:
-    #     # rectangle(img, (x, y), (x+w, y+h), (0, 0, 255), 2)
-    #     faces = img[y:y + h, x:x + w]
-    #     imshow("face", faces)
-    #     imwrite("./faces/faces_{}".format(str(count)), faces)
+    for (x, y, w, h) in faces:
+        # rectangle(img, (x, y), (x+w, y+h), (0, 0, 255), 2)
+        faces = img[y:y + h, x:x + w]
+        imshow("face", faces)
+        imwrite(f"./faces/faces_{str(count)}.jpg", faces)
 
     eTime = time()
     print("Cycle {} Time: ".format(count), round(eTime-sTime, 2))
